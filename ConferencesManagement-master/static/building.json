@@ -1,0 +1,72 @@
+{
+  "children": [
+    {
+      "id":"111",
+      "asset_num": 500,
+      "name": "弘卓楼",
+      "manage": "容纳人数",
+      "itemStyle": {
+        "normal": {
+          "color": "#000"
+        }
+      },
+      "children": [
+        {
+          "id":"111",
+          "name": "第一层",
+          "asset_num": 100,
+          "manage": "liang-01",
+          "children": [
+            {
+              "name": "会议室1",
+              "asset_num": 100,
+              "manage": "liang-01",
+              "id": "1159352944550875136"
+            },
+            {
+              "id":"111",
+              "name": "会议室2",
+              "asset_num": 10,
+              "manage": "liang-01"
+            },
+            {
+              "id":"111",
+              "name": "会议室3",
+              "asset_num": 10,
+              "manage": "liang-01"
+            },
+            {
+              "id":"111",
+              "name": "会议室3",
+              "asset_num": 10,
+              "manage": "liang-01"
+            }
+          ]
+        },
+        {
+          "id":"111",
+          "name": "第二层",
+          "asset_num": 20,
+          "manage": "liang-01"
+        },
+        {
+          "id":"111",
+          "name": "第三层",
+          "asset_num": 30,
+          "manage": "liang-02"
+        }
+      ]
+    },
+    {
+      "id":"111",
+      "asset_num": 400,
+      "name": "产业楼",
+      "manage": "容纳人数",
+      "itemStyle": {
+        "normal": {
+          "color": "#f7f7f7"
+        }
+      }
+        }
+      ]
+}
