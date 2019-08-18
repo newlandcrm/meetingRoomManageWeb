@@ -2,8 +2,8 @@
   <div>
     <router-view></router-view>
     <Bread-Crumb></Bread-Crumb>
-    <div id="content1" style="margin:20px 10px;border:1px solid #005BAC">
-      <img src="../../../../assets/images/floor/tu1.jpg" alt="园区" usemap="#Map1"/>
+    <div id="content1" style="margin:10px;border:1px solid #005BAC">
+      <img src="../../../../assets/images/floor/yuanqu.jpg" alt="园区" usemap="#Map1"/>
       <map name="Map1" id="Map1">
         <area alt="dalou1" title="dalou2" href="/floor12" shape="poly" coords="424,363,584,317,639,369,640,409,474,472,426,395" target="_self"
               id="hot1" class="hot1" onmouseover="ahover('a1')"/>      </map>

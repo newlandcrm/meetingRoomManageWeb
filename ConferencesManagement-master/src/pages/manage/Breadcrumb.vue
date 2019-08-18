@@ -1,5 +1,5 @@
 <template>
-  <div class="m-artHeader">
+  <div class="m-artHeader" style="margin:5px;">
     <el-breadcrumb class="linkWay">
       <el-breadcrumb-item v-for="(item,index) in breadList" :key="item.id"  separator="/" :to="{ path: item.path }">{{item.name}}</el-breadcrumb-item>
     </el-breadcrumb>

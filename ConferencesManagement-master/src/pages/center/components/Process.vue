@@ -66,7 +66,10 @@ export default {
     },
   methods:{
     getRoomReserve(){
-      let params = {userid:this.$store.state.userid}
+      let params = {
+        // userid:this.$store.state.userid
+        userid:'1160555929993875456'
+      }
       axios.post('http://localhost:9001/roomReserve/search',params)
         .then((res) => {
           if (res.data.code === 20000) {

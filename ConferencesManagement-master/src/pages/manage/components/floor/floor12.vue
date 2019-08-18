@@ -1,10 +1,10 @@
 <template>
   <div><router-view></router-view>
     <Bread-Crumb></Bread-Crumb>
-    <div id="content2" style="margin:20px 10px;border:1px solid #005BAC">
-      <img src="../../../../assets/images/floor/tu2.jpg" alt="B楼" usemap="#Map2"/>
+    <div id="content2" style="margin:10px;border:1px solid #005BAC">
+      <img src="../../../../assets/images/floor/Bhome.jpg" alt="B楼" usemap="#Map2"/>
       <map name="Map2" id="Map2">
-      <area alt="" title="" href="/floor13" shape="poly" coords="4,0,0,119,299,116,292,2" />
+      <area alt="" title="" href="/floor13" shape="poly" coords="31,422,22,609,1440,681,1435,415" />
       </map>
     </div>
   </div>
