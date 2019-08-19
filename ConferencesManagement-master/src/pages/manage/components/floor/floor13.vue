@@ -5,7 +5,9 @@
     <div id="content3" style="margin:10px;border:1px solid #005BAC">
     <img src="../../../../assets/images/floor/3ceng.jpg" alt="三楼" usemap="#Map3"/>
     <map name="Map3" id="Map3">
-      <area alt="会议室1" title="会议室1" href="/floor131?id=1159352944550875136" shape="poly" coords="294,576,357,718,454,678,475,671,447,541" />
+<!--      <area alt="会议室1" title="会议室1" href="/order?id=111" shape="poly" coords="340,630,405,792,497,756,422,598" />-->
+      <area alt="会议室1" title="会议室1" href="/order?id=111" shape="poly" coords="20,409,98,319,157,332,70,440" />
+      <area alt="会议室1" title="会议室1" href="/order?id=111" shape="poly" coords="982,308,1114,326,1106,402,969,392" />
       <!--<area alt="" title="" href="#" shape="poly" coords="1022,401,1079,478,1213,425,1146,345" />-->
       <!--<area alt="" title="" href="#" shape="poly" coords="907,359,1073,294,1019,219,873,245,849,254" />-->
     </map>

@@ -1,8 +1,8 @@
 <template>
     <div  class="container">
-      <el-card class="box-card">
+      <el-card class="box-card" >
         <div slot="header" class="clearfix">
-          <span>代办事项</span>
+          <span>我的预定列表</span>
         </div>
         <div>
       <el-table
@@ -14,31 +14,40 @@
           prop="startdate"
           label="开始时间"
           sortable
-          width="150"
-          :formatter="formatDate">
+          width="160"
+          :formatter="formatDate"
+        align="center"
+        >
         </el-table-column>
         <el-table-column
           prop="enddate"
           label="结束时间"
-          width="150"
+          width="160"
+          align="center"
           :formatter="formatDate">
         </el-table-column>
         <el-table-column
           prop="room.name"
           label="会议室名称"
-          :formatter="formatter">
+          width="150"
+          align="center"
+        >
         </el-table-column>
         <el-table-column
           prop="room.addr"
           label="会议室地址"
-          :formatter="formatter">
+          width="180"
+          align="center"
+        >
         </el-table-column>
         <el-table-column
           prop="content"
           label="主题"
-          :formatter="formatter">
+          width="180"
+          align="center"
+        >
         </el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button
               size="mini"
@@ -68,7 +77,7 @@ export default {
     getRoomReserve(){
       let params = {
         // userid:this.$store.state.userid
-        userid:'1160555929993875456'
+        userid:'123'
       }
       axios.post('http://localhost:9001/roomReserve/search',params)
         .then((res) => {
@@ -91,7 +100,22 @@ export default {
       console.log(index, row);
     },
     handleDelete(index, row) {
-      console.log(index, row);
+        axios.delete('http://localhost:9001/roomReserve/'+row.id)
+            .then((res) => {
+                if (res.data.code === 20000) {
+                    this.$message({
+                        message: '删除成功！！',
+                        type: 'success'
+                    })
+                } else {
+                    this.$message({
+                        message: '删除失败！',
+                        type: 'danger'
+                    })
+                }
+            }).catch((error) => {
+            console.log(error)
+        })
     },
 
     //时间格式化
@@ -114,7 +138,7 @@ export default {
 <style lang="stylus" scoped>
      @import '~styles/varibles.styl'
     .container
-        padding 0 20px
+        padding 0 0 0 10px
         .list
             padding 0 100px
             textStyle()
