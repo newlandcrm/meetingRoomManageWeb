@@ -6,10 +6,10 @@
                     class="el-menu-vertical-demo"
                     active-text-color="#005BAC"
                     router :default-active="$route.path">
-                    <el-menu-item index="/rearch" >
+                    <el-menu-item index="/reserve" >
                         <span slot="title">会议室查询</span>
                     </el-menu-item>
-                    <el-menu-item index="/reserve">
+                    <el-menu-item index="/search">
                         <span slot="title">会议室预定</span>
                     </el-menu-item>
                     <el-menu-item index="/already">

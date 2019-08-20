@@ -1,15 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../pages/home/Home'
-import Room from '../pages/room/Room'
-import Book from '../pages/book/Book'
-import Search from '../pages/search/Search'
 import Center from '../pages/center/Center'
-import Step from '../pages/step/Step'
 import Log from '../pages/log/Log'
 import Sign from '../pages/sign/Sign'
 import Manage from '../pages/manage/Manage'
-import Rearch from '../pages/manage/components/Rearch'
+import Search from '../pages/manage/components/Search'
 import Reserve from '../pages/manage/components/Reserve'
 import Already from '../pages/manage/components/Already'
 import Floor11 from '../pages/manage/components/floor/floor11'
@@ -35,25 +31,9 @@ export default new Router({
       name: 'Home',
       component: Home
     },{
-      path: '/room',
-      name: 'Room',
-      component: Room
-    },{
-      path: '/book',
-      name: 'Book',
-      component: Book
-    },{
-      path: '/search',
-      name: 'Search',
-      component: Search
-    },{
       path: '/center',
       name: 'Center',
       component: Center
-    },{
-      path: '/step',
-      name: 'Step',
-      component: Step
     },{
       path: '/log',
       name: 'Log',
@@ -68,9 +48,9 @@ export default new Router({
       component: Manage,
       children: [
         {
-          path: '/rearch',
-          name: 'Rearch',
-          component: Rearch,
+          path: '/search',
+          name: 'Search',
+          component: Search,
           meta: 'search',
         },
         {path: '/floor11', name: 'Floor11', component: Floor11,meta:{breadNumber:1}},

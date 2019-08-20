@@ -4,9 +4,12 @@
     <Bread-Crumb></Bread-Crumb>
     <div id="content1" style="margin:10px;border:1px solid #005BAC">
       <img src="../../../../assets/images/floor/yuanqu.jpg" alt="园区" usemap="#Map1"/>
+      <iframe src="">
+
+      </iframe>
       <map name="Map1" id="Map1">
-        <area alt="dalou1" title="dalou2" href="/floor12" shape="poly" coords="610,263,612,332,706,372,881,321,889,260,784,219" target="_self"
-              id="hot1" class="hot1" onmouseover="ahover('a1')"/>      </map>
+        <area alt="dalou1" title="dalou2" @click="goPage" shape="poly" coords="610,263,612,332,706,372,881,321,889,260,784,219"
+              id="hot1" class="hot1" @mouseover="ahover('a1')"/>      </map>
     </div>
   </div>
 </template>
@@ -27,6 +30,12 @@
       ahover(id){
         alert(document.getElementById(id).className);
       },
+        goPage(){
+            this.$router.push({
+                name: 'Floor12',
+                params: { },
+            })
+        },
 
       adjust() {
         var timeout = null;//onresize触发次数过多，设置定时器

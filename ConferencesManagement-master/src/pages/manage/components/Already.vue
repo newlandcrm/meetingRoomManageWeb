@@ -56,7 +56,8 @@
               <el-button
                 size="mini"
                 type="danger"
-                @click="addpeople(scope.$index, scope.row) ">添加人员
+                @click="addpeople(scope.$index, scope.row) "
+              >参会人员
               </el-button>
             </template>
           </el-table-column>
@@ -67,15 +68,16 @@
           :visible.sync="dialogVisible"
           width="40%"
           margin-top="20vh"
-          :before-close="handleClose">
+          :before-close="AllClose">
           <div style="margin-bottom:30px">
           <el-tag
-            :key="tag"
+            :key="tag.id"
             v-for="tag in dynamicTags"
             closable
             :disable-transitions="false"
-            @close="handleClose(tag)">
-            {{tag}}
+            @close="handleClose(tag)"
+            style="margin: 6px">
+            {{tag.name}}
           </el-tag>
           <el-input
             class="input-new-tag"
@@ -91,7 +93,7 @@
           <el-button v-else class="button-new-tag" size="small"  @click="showInput" style="margin: 6px" type="danger">点击添加</el-button>
           </div>
           <el-button @click="dialogVisible = false" style="">取 消</el-button>
-          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          <el-button type="primary" @click="sure()">确 定</el-button>
         </el-dialog>
       </div>
     </el-card>
@@ -110,6 +112,7 @@
                 dynamicTags: [],
                 inputVisible: false,
                 inputValue: '',
+                reserveid:''
             };
         },
         methods: {
@@ -132,6 +135,27 @@
                     console.log(error)
                 })
             },
+            getRelaPerson(){
+                let params = {
+                    reserveid: this.reserveid
+                }
+                axios.post('http://localhost:9001/relatePerson/search', params)
+                    .then((res) => {
+                        if (res.data.code === 20000) {
+                            this.dynamicTags=[]
+                            for (var i=0;i<res.data.data.length;i++){
+                                this.dynamicTags.push({name:res.data.data[i].name,id:res.data.data[i].id})
+                            }
+                        } else {
+                            this.$message({
+                                message: '网络连接失败！',
+                                type: 'danger'
+                            })
+                        }
+                    }).catch((error) => {
+                    console.log(error)
+                })
+            },
             formatter(row, column) {
                 return row.address;
             },
@@ -143,8 +167,10 @@
             },
             addpeople(index, row) {
                 this.dialogVisible = true
+                this.reserveid = row.id
+                this.getRelaPerson()
             },
-            handleClose(done) {
+            AllClose(done) {
                 this.$confirm('确认关闭？')
                     .then(_ => {
                         done();
@@ -153,7 +179,19 @@
                     });
             },
             handleClose(tag) {
-                this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+                axios.delete('http://localhost:9001/relatePerson/'+tag.id)
+                    .then((res) => {
+                        if (res.data.code === 20000) {
+                            this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+                        } else {
+                            this.$message({
+                                message: '删除失败！',
+                                type: 'danger'
+                            })
+                        }
+                    }).catch((error) => {
+                    console.log(error)
+                })
             },
 
             showInput() {
@@ -166,10 +204,39 @@
             handleInputConfirm() {
                 let inputValue = this.inputValue;
                 if (inputValue) {
-                    this.dynamicTags.push(inputValue);
+                    this.dynamicTags.push({name:inputValue});
                 }
                 this.inputVisible = false;
                 this.inputValue = '';
+            },
+
+            sure(){
+                var namearray=[]
+                for(var i=0;i<this.dynamicTags.length;i++){
+                    namearray.push(this.dynamicTags[i].name)
+                }
+                let params = {
+                    reserveid:this.reserveid,
+                    relatePerson: namearray
+                }
+                console.log('====='+this.dynamicTags.name)
+                axios.post('http://localhost:9001/relatePerson/addlist', params)
+                    .then((res) => {
+                        if (res.data.code === 20000) {
+                            this.$message({
+                                message: '添加人员成功！',
+                                type: 'danger'
+                            })
+                            this.dialogVisible = false
+                        } else {
+                            this.$message({
+                                message: '添加失败！',
+                                type: 'danger'
+                            })
+                        }
+                    }).catch((error) => {
+                    console.log(error)
+                })
             },
 
             //时间格式化

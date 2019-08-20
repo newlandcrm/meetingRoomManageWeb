@@ -1,11 +1,11 @@
 <template>
     <div class="content">
         <home-header></home-header>
-        <home-Time :list="list"></home-Time>
+<!--        <home-Time :list="list"></home-Time>-->
         <keep-alive>
-            <!--<home-number></home-number>-->
+            <home-number></home-number>
         </keep-alive>
-        <home-detail></home-detail>
+<!--        <home-detail></home-detail>-->
       <div  class="xuanfu" id="moveDiv"
            @mousedown="down" @touchstart="down"
            @mousemove="move" @touchmove="move"
@@ -47,12 +47,12 @@ export default {
             // .then(this.getHomeInfoSucc)
         },
         getHomeInfoSucc (res) {
-            res = res.data
-            if(res.code == 200)
-            {
-                const data= res.data
-                this.list = data
-            }
+            // res = res.data
+            // if(res.code == 200)
+            // {
+            //     const data= res.data
+            //     this.list = data
+            // }
         },
       // 实现移动端拖拽
       down(){
@@ -93,10 +93,10 @@ export default {
         this.flags = false;
       },
     },
-        // getNumInfo(){
-        //     axios.get('static/mock/number.json')
-        //     .then(this.getNumInfoSucc)
-        // },
+        getNumInfo(){
+            // axios.get('static/mock/number.json')
+            // .then(this.getNumInfoSucc)
+        },
         // getNumInfoSucc(res){
         //      res = res.data
         //      console.log(res)
@@ -106,19 +106,19 @@ export default {
         //     }
         // }
 
-    computed:{		
+    computed:{
 			userName() {
 		        let localData = localStorage.username;
 		        if(this.$store.state.username===undefined){
 		          	this.$store.commit('changeUsername',localData)
-		        }		       
+		        }
 		        return this.$store.state.username
              },
     },
     mounted(){
         this.getHomeInfo()
-        // this.getNumInfo()
-    }    
+        this.getNumInfo()
+    }
 }
 </script>
 <style lang="stylus" scoped>
