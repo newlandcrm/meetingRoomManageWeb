@@ -125,6 +125,7 @@
         },
         methods: {
             getRoomReserve() {
+                if(this.$store.state.userid){
                 var timestamp=new Date().getTime()
                 let params = {
                     userid:this.$store.state.userid
@@ -149,6 +150,7 @@
                     }).catch((error) => {
                     console.log(error)
                 })
+                }
             },
             getRelaPerson(){
                 let params = {

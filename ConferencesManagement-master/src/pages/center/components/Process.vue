@@ -77,23 +77,36 @@ export default {
     },
   methods:{
     getRoomReserve(){
-        this.today = new Date().getTime()
-      let params = {
-        userid:this.$store.state.userid
-      }
-      axios.post('http://localhost:9001/roomReserve/search',params)
-        .then((res) => {
-          if (res.data.code === 20000) {
-            this.roomReserve = res.data.data
-          } else {
-            this.$message({
-              message: '网络连接失败！',
-              type: 'danger'
+        if(this.$store.state.userid) {
+            this.today = new Date().getTime()
+            let params = {
+                userid: this.$store.state.userid
+            }
+            axios.post('http://localhost:9001/roomReserve/search', params)
+                .then((res) => {
+                    if (res.data.code === 20000) {
+                        this.roomReserve = res.data.data
+                    } else {
+                        this.$message({
+                            message: '网络连接失败！',
+                            type: 'danger'
+                        })
+                    }
+                }).catch((error) => {
+                console.log(error)
             })
-          }
-        }).catch((error) => {
-        console.log(error)
-      })
+        }else{
+            this.$confirm('请先登录', '提示', {
+                confirmButtonText: '直接登录',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.$router.push({
+                    name: 'Log',
+                    params: { },
+                })
+            })
+        }
     },
     formatter(row, column) {
       return row.address;
