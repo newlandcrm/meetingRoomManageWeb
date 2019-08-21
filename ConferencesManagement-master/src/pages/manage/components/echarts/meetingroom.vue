@@ -1,7 +1,5 @@
 <template>
   <div style="display: flex" width="1000px">
-    <!--<router-view></router-view>-->
-    <!--<Bread-Crumb></Bread-Crumb>-->
 
     <div id="main" style="width: 700px;height:600px;background-color: rgba(211,220,230,0.19)">
     </div>
@@ -73,12 +71,10 @@
             },
             search() {
                 var $this = this
-                // console.log(this.time.value)
                 var timeinfo = {
                     time: $this.time
                 }
-                // var time = $this.time
-                // alert(time)
+
                 $.ajax({
                     type: 'post',
                     async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -88,7 +84,6 @@
                     dataType: 'json',
                     contentType: 'application/json',        //返回数据形式为json
                     success: function (result) {
-                        // alert(JSON.stringify(result))
                         $this.tables = result.data
                     },
                     error: function (errorMsg) {
@@ -117,13 +112,10 @@
                 }
                 var info2 = {}
                 myChart.showLoading()
-                // setTimeout(drawLine,2000);
                 $.ajax({
                     type: 'get',
                     async: false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
                     url: 'http://localhost:9001/building/getChildren',    //请求发送到TestServlet处
-                    // url: '../../src/assets/building.json',
-                    // url:'src/assets/building.json',
                     data: {},
                     dataType: 'json',        //返回数据形式为json
                     success: function (result) {
