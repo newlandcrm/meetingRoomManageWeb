@@ -23,8 +23,8 @@
       methods:{
           goPage(){
               this.$router.push({
-                  name: 'Floor13',
-                  params: { },
+                  path: '/floor13',
+                  query: { },
               })
           },
       }

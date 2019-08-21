@@ -28,7 +28,7 @@
 
         goPage(){
             this.$router.push({
-                name: 'Floor22',
+                name: '产业楼B楼三层',
                 params: {},
             })
         },

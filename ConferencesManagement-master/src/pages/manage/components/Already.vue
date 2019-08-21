@@ -125,6 +125,7 @@
         },
         methods: {
             getRoomReserve() {
+                if(this.$store.state.userid){
                 var timestamp=new Date().getTime()
                 let params = {
                     userid:this.$store.state.userid
@@ -149,6 +150,7 @@
                     }).catch((error) => {
                     console.log(error)
                 })
+                }
             },
             getRelaPerson(){
                 let params = {
@@ -176,7 +178,7 @@
             },
             daohang(index, row) {
                 this.$router.push({
-                    name: 'Floor21',
+                    path: '/floor21',
                     params: {roomId: row.room.id},
                 })
             },

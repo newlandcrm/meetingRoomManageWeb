@@ -3,7 +3,7 @@
         <home-header></home-header>
         <div class="content">
             <el-tabs :tab-position="tabPosition">
-                <el-tab-pane label="个人中心">
+                <el-tab-pane label="个人资料">
                     <center-person :list="list"></center-person>
                 </el-tab-pane>
                 <el-tab-pane label="我的预定">

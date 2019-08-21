@@ -27,8 +27,8 @@
     methods: {
         goPage(){
             this.$router.push({
-                name: 'Floor12',
-                params: { },
+                path: '/floor12',
+                query: { },
             })
         },
 

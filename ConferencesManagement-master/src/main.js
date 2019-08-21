@@ -14,11 +14,13 @@ import 'styles/iconfont.css'
 import $ from 'jquery'
 import VueHtml5Plus from 'vue-html5plus'
 Vue.config.productionTip = false
-Vue.prototype.$echarts = echarts 
+Vue.prototype.$echarts = echarts
 Vue.use(VueAwesomeSwiper)
 Vue.use(ElementUI);
 Vue.use(VueHtml5Plus)
-
+Vue.prototype.$message1 = function (msg) {
+  this.$message({message: msg,duration:100})
+}
 
 new Vue({
   el: '#app',
@@ -28,7 +30,6 @@ new Vue({
   render: h => h(App),
   template: '<App/>'
 })
-// router.afterEach((to,from,next) => {
-//     window.scrollTo(0,0);
-//   });
-// 注册一个全局自定义指令 `v-focus`
+
+
+

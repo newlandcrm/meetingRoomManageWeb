@@ -23,7 +23,7 @@
       methods:{
           goPage(){
               this.$router.push({
-                  name: 'Floor23',
+                  name: '会议室1',
                   params: { },
               })
           },
