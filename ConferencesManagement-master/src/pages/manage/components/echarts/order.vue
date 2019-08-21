@@ -1,7 +1,6 @@
 <template>
   <div style="display: flex">
-    <!--<div id="main" ref="chart" style="width: 200px;height:600px;background-color: rgba(211,220,230,0.19)">-->
-    <!--</div>-->
+
     <div height="500" width="600" style="margin:10px;">
       <div class="block">
         <div>
@@ -145,21 +144,10 @@
                     number: ''
                 },
                 rules2: {
-                    // userid: [
-                    //   { required: true, message: '请输入id', trigger: 'blur' }
-                    // ],
-                    // number: [
-                    //   { required: true, message: '请输入工号', trigger: 'blur' }
-                    // ],
+
                     value1: [
                         { type: 'date', required: true, message: '请选择日期', trigger: 'change' }
                     ],
-                    // startdate: [
-                    //   { type: 'string', required: true, message: '请选择时间', trigger: 'change' }
-                    // ],
-                    // enddate: [
-                    //   { type: 'string', required: true, message: '请选择时间', trigger: 'change' }
-                    // ],
                     content: [
                         { required: true, message: '请填写会议内容', trigger: 'blur' }
                     ]

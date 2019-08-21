@@ -1,11 +1,11 @@
 <template>
   <div style="display: flex" width="1000px">
 
-    <div id="main" style="width: 700px;height:600px;background-color: rgba(211,220,230,0.19)">
+    <div id="main" style="width: 650px;height:600px;background-color: rgba(211,220,230,0.19)">
     </div>
 
 
-    <div style="width: 480px" >
+    <div style="width: 470px" >
       <div class="table">
         <div class="search-Box" style="margin: 20px 0px 20px 0px">
           <el-row>
