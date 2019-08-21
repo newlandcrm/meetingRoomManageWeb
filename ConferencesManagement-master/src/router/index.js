@@ -52,17 +52,17 @@ export default new Router({
       children: [
         {
           path: '/search',
-          name: 'Search',
+          name: '园区',
           component: Search,
           meta: 'search',
         },
-        {path: '/floor11', name: 'Floor11', component: Floor11,meta:{breadNumber:1}},
-        {path: '/floor12', name: 'Floor12', component: Floor12,meta:{breadNumber:2}},
-        {path: '/floor13', name: 'Floor13', component: Floor13,meta:{breadNumber:3}},
+        {path: '/floor11', name: '园区', component: Floor11,meta:{breadNumber:1}},
+        {path: '/floor12', name: '产业楼B楼', component: Floor12,meta:{breadNumber:2}},
+        {path: '/floor13', name: '三楼会议室', component: Floor13,meta:{breadNumber:3}},
 
-        {path: '/floor21', name: 'Floor21', component: Floor21,meta:{breadNumber:1}},
-        {path: '/floor22', name: 'Floor22', component: Floor22,meta:{breadNumber:2}},
-        {path: '/floor23', name: 'Floor23', component: Floor23,meta:{breadNumber:3}},
+        {path: '/floor21', name: '园区', component: Floor21,meta:{breadNumber:1}},
+        {path: '/floor22', name: '产业楼B楼三层', component: Floor22,meta:{breadNumber:2}},
+        {path: '/floor23', name: '会议室1', component: Floor23,meta:{breadNumber:3}},
 
         {path: '/already', name: 'Already', component: Already},
 
