@@ -13,19 +13,19 @@
                     >
                         {{item.title}}
                     </span>
-          <dl
-            v-show="index==showList"
-            v-if="exist(item)"
-            class="hoverList"
-          >
-            <div>
-              <dd
-                v-for="(item, index) of item.list"
-                :key="index" class="hoverList-item"
-              >{{item}}
-              </dd>
-            </div>
-          </dl>
+<!--          <dl-->
+<!--            v-show="index==showList"-->
+<!--            v-if="exist(item)"-->
+<!--            class="hoverList"-->
+<!--          >-->
+<!--            <div>-->
+<!--              <dd-->
+<!--                v-for="(item, index) of item.list"-->
+<!--                :key="index" class="hoverList-item"-->
+<!--              >{{item}}-->
+<!--              </dd>-->
+<!--            </div>-->
+<!--          </dl>-->
         </router-link>
       </ul>
     </div>
@@ -33,6 +33,10 @@
       <router-link tag="span" to="/log">登录</router-link>
       <span>|</span>
       <router-link tag="span" to="/sign">注册</router-link>
+    </div>
+    <div v-if="flag==true" class="header-login" @click="out">
+      <p style="color:#005BAC;display: inline-block;">{{name}} </p>
+      <router-link tag="span" to="/log"> `退登</router-link>
     </div>
   </div>
 </template>
@@ -44,23 +48,24 @@
         list: [{
           'id': '1',
           'title': '首页',
-          'list': [],
+          // 'list': [],
           'router': '/'
 
         }, {
           'id': '2',
-          'title': '会议室操作',
-          'list': ['会议室查询', '会议室预定', '预定列表'],
+          'title': '会议室预约',
+          // 'list': ['会议室查询', '会议室预定', '预定列表'],
           'router': '/manage'
         }, {
           'id': '3',
           'title': '个人中心',
-          'list': ['个人中心', '我的预定', '密码重置'],
+          // 'list': ['个人中心', '我的预定', '密码重置'],
           'router': '/center'
         }],
         hoverIndex: -1,
-        userName: ''
-
+        userName: '',
+        flag:false,
+          name:''
       }
     },
     created() {
@@ -73,19 +78,27 @@
         }
         else return true
       },
-      showList() {
-        if (hoverIndex != -1) {
-          document.getElementById()
-        }
-      },
+      // showList() {
+      //   if (hoverIndex != -1) {
+      //   }
+      // },
       show() {
-        if (this.userName) {
-          return false;
+        if (this.$store.state.userid) {
+            this.flag = true
+            this.name= this.$store.state.nickname
+            return false;
         }
         else {
-          return true;
+            this.flag = false
+            return true;
         }
-      }
+      },
+        out(){
+            this.$store.state={}
+        },
+        // clickcategory(index){ // 这里我们传入一个当前值
+        //     this.hoverIndex = index
+        // }
     }
   }
 </script>
@@ -143,6 +156,5 @@
         padding 10px 0
 
   .header-login
-    width 100px
     cursor pointer
 </style>

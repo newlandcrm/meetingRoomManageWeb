@@ -2,7 +2,7 @@
   <div><router-view></router-view>
     <Bread-Crumb></Bread-Crumb>
     <div id="content2" style="margin:10px;">
-      <img src="../../../../assets/images/floor/Blou.jpg" alt="B楼" usemap="#Map2"/>
+      <img src="../../../../assets/images/floor/Blou1.jpg" alt="B楼" usemap="#Map2"/>
       <map name="Map2" id="Map2">
       <area alt="" title="" @click="goPage" shape="poly" coords="262,264,264,393,1250,403,1244,300" />
       </map>
@@ -23,7 +23,7 @@
       methods:{
           goPage(){
               this.$router.push({
-                  name: 'Floor13',
+                  name: 'Floor23',
                   params: { },
               })
           },

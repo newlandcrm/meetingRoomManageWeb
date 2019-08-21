@@ -47,6 +47,14 @@
             align="center"
           >
           </el-table-column>
+          <el-table-column property="state" label="状态" width="150"
+                           align="center">
+            <template slot-scope="scope">
+              <el-tag type effect="dark" v-if="scope.row.state==0">未审核</el-tag>
+              <el-tag type="success" effect="dark" v-if="scope.row.state==1">已通过</el-tag>
+              <el-tag type="danger" effect="dark" v-if="scope.row.state==2">未通过</el-tag>
+            </template>
+          </el-table-column>
           <el-table-column label="操作" align="center">
             <template slot-scope="scope">
               <el-button
@@ -117,14 +125,21 @@
         },
         methods: {
             getRoomReserve() {
+                var timestamp=new Date().getTime()
                 let params = {
-                    // userid:this.$store.state.userid
-                    userid: '1160555929993875456'
+                    userid:this.$store.state.userid
                 }
                 axios.post('http://localhost:9001/roomReserve/search', params)
                     .then((res) => {
                         if (res.data.code === 20000) {
-                            this.roomReserve = res.data.data
+                            // this.roomReserve = res.data.data
+                            for (var i=0;i<res.data.data.length;i++){
+                                if(timestamp<res.data.data[i].startdate){
+                                    this.roomReserve = res.data.data
+                                }else{
+                                    return false
+                                }
+                            }
                         } else {
                             this.$message({
                                 message: '网络连接失败！',
@@ -161,7 +176,7 @@
             },
             daohang(index, row) {
                 this.$router.push({
-                    name: 'Floor11',
+                    name: 'Floor21',
                     params: {roomId: row.room.id},
                 })
             },
@@ -219,7 +234,6 @@
                     reserveid:this.reserveid,
                     relatePerson: namearray
                 }
-                console.log('====='+this.dynamicTags.name)
                 axios.post('http://localhost:9001/relatePerson/addlist', params)
                     .then((res) => {
                         if (res.data.code === 20000) {
@@ -260,7 +274,7 @@
   @import '~styles/varibles.styl'
   .container
     padding 15px
-
+    width: 90%;
     .list
       padding 0 100px
       textStyle()

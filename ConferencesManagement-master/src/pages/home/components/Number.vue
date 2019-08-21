@@ -14,6 +14,7 @@
   require('echarts/lib/chart/bar')
   require('echarts/lib/component/tooltip')
   require('echarts/lib/component/title')
+  import axios from 'axios'
     var hoursList = []
     export default {
         name: 'HomeNumber',
@@ -28,10 +29,20 @@
 
         methods: {
             getdata() {
+                var xData = []
+                //y,x,z
+                var data = []
                 var myChart = this.$echarts.init(document.getElementById('chart'))
-                var xData = ['a', 'b', 'c', 'd', 'e', 'f', 'g',]
+                // var xData = ['二楼', '二楼', '二楼', '二楼', '二楼', '二楼', '二楼']
                 var days = ['']
-                var data = [[0, 0, 5], [0, 1, 11], [0, 2, 3], [6, 3, 1], [6, 4, 2], [6, 5, 2], [6, 6, 6]]
+                // var data = [[0, 0, 5], [0, 1, 11], [0, 2, 3], [6, 3, 1], [6, 4, 2], [6, 5, 2], [6, 6, 6]]
+                axios.get('http://localhost:9001/roomReserve/hisReserveCount')
+                    .then((res) => {
+                        if (res.data.code === 20000) {
+                            for(var i=0;i<res.data.data.length;i++){
+                                xData.push(res.data.data[i].name)
+                                data.push([10,i,res.data.data[i].count])
+                            }
                 myChart.setOption({
                     tooltip: {},
                     visualMap: {
@@ -44,7 +55,7 @@
                     },
                     //x轴显示
                     xAxis3D: {
-                        name: 'x', nameGap: 1, type: 'category', data: xData
+                        name: '', nameGap: 1, type: 'category', data: xData
                     },
                     //   ------   y轴  ----------
                     yAxis3D: {
@@ -73,6 +84,15 @@
                             shading: 'lambert'
                         },]
                 })
+                        } else {
+                            this.$message({
+                                message: '获取数据失败！',
+                                type: 'danger'
+                            })
+                        }
+                    }).catch((error) => {
+                    console.log(error)
+                })
             }
             },
 
@@ -89,8 +109,18 @@
     padding 100px 100px 50px 100px
     .title
       text-align center
+      margin-top 5px
     h2
       font-size 28px
       font-weight 600
       margin-bottom 10px
+  .border-bottom
+      position relative
+      display block
+      width 300px
+      left 0
+      right 0
+      margin auto
+      margin-bottom 50px
+      border-bottom 2px solid #005BAC
 </style>

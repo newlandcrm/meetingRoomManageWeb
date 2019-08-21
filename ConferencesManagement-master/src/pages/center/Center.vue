@@ -80,4 +80,5 @@ export default {
 <style lang="stylus" scoped>
     .content
         padding 100px 160px
+        width 90%
 </style>

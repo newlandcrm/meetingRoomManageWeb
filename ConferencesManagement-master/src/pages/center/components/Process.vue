@@ -51,7 +51,8 @@
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              @click="handleEdit(scope.$index, scope.row)"
+            v-if="roomReserve[scope.$index].startdate>today">编辑</el-button>
             <el-button
               size="mini"
               type="danger"
@@ -70,14 +71,15 @@ export default {
     name: 'CenterProcess',
     data() {
       return {
-        roomReserve: []
+        roomReserve: [],
+          today:''
       };
     },
   methods:{
     getRoomReserve(){
+        this.today = new Date().getTime()
       let params = {
-        // userid:this.$store.state.userid
-        userid:'123'
+        userid:this.$store.state.userid
       }
       axios.post('http://localhost:9001/roomReserve/search',params)
         .then((res) => {
@@ -97,7 +99,32 @@ export default {
       return row.address;
     },
     handleEdit(index, row) {
-      console.log(index, row);
+        this.$confirm('此操作将重新开始预定，是否确定?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+        }).then(() => {
+            this.$router.push({
+                name: 'Meetingroom',
+                params: {}
+            })
+            axios.delete('http://localhost:9001/roomReserve/'+row.id)
+                .then((res) => {
+                    if (res.data.code === 20000) {
+                        this.$message({
+                            message: '删除成功！！',
+                            type: 'success'
+                        })
+                    } else {
+                        this.$message({
+                            message: '删除失败！',
+                            type: 'danger'
+                        })
+                    }
+                }).catch((error) => {
+                console.log(error)
+            })
+        })
     },
     handleDelete(index, row) {
         axios.delete('http://localhost:9001/roomReserve/'+row.id)
@@ -139,6 +166,7 @@ export default {
      @import '~styles/varibles.styl'
     .container
         padding 0 0 0 10px
+        width 90%
         .list
             padding 0 100px
             textStyle()

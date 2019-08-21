@@ -3,11 +3,11 @@
     <router-view></router-view>
     <Bread-Crumb></Bread-Crumb>
     <div id="content3" style="margin:10px">
-    <img src="../../../../assets/images/floor/3ceng.jpg" alt="三楼" usemap="#Map3"/>
+    <img src="../../../../assets/images/floor/3ceng1.jpg" alt="三楼" usemap="#Map3"/>
     <map name="Map3" id="Map3">
 <!--      <area alt="会议室1" title="会议室1" href="/order?id=111" shape="poly" coords="340,630,405,792,497,756,422,598" />-->
-      <area alt="会议室1" title="会议室1" @click="goPage1" shape="poly" coords="20,409,98,319,157,332,70,440" />
-      <area alt="会议室2" title="会议室2" @click="goPage()" shape="poly" coords="982,308,1114,326,1106,402,969,392" />
+      <area alt="会议室1" title="会议室1" @click="goPage" shape="poly" coords="20,409,98,319,157,332,70,440" />
+      <area alt="会议室2" title="会议室2" @click="goPage" shape="poly" coords="982,308,1114,326,1106,402,969,392" />
       <!--<area alt="" title="" href="#" shape="poly" coords="1022,401,1079,478,1213,425,1146,345" />-->
       <!--<area alt="" title="" href="#" shape="poly" coords="907,359,1073,294,1019,219,873,245,849,254" />-->
     </map>
@@ -23,19 +23,15 @@
       BreadCrumb
     },
       data(){
-          return{}
+          return{
+              flag:false
+          }
       },
       methods:{
-          goPage1(){
-              this.$router.push({
-                  name: 'Order',
-                  params: {roomId:'111' },
-              })
-          },
           goPage(){
-              this.$router.push({
-                  name: 'Order',
-                  params: {roomId:'1159352944550875136' },
+              this.$message({
+                  message: '导航结束！',
+                  type: 'danger'
               })
           },
       }

@@ -7,10 +7,10 @@
                     active-text-color="#005BAC"
                     router :default-active="$route.path">
                     <el-menu-item index="/reserve" >
-                        <span slot="title">会议室查询</span>
+                        <span slot="title">会议室预约</span>
                     </el-menu-item>
                     <el-menu-item index="/search">
-                        <span slot="title">会议室预定</span>
+                        <span slot="title">会议室导航</span>
                     </el-menu-item>
                     <el-menu-item index="/already">
                         <span slot="title">已预定列表</span>

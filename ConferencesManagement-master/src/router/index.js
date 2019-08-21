@@ -11,6 +11,9 @@ import Already from '../pages/manage/components/Already'
 import Floor11 from '../pages/manage/components/floor/floor11'
 import Floor12 from '../pages/manage/components/floor/floor12'
 import Floor13 from '../pages/manage/components/floor/floor13'
+import Floor21 from '../pages/manage/components/floor/floor21'
+import Floor22 from '../pages/manage/components/floor/floor22'
+import Floor23 from '../pages/manage/components/floor/floor23'
 
 import Meetingroom from '../pages/manage/components/echarts/meetingroom'
 import Order from '../pages/manage/components/echarts/Order'
@@ -56,6 +59,10 @@ export default new Router({
         {path: '/floor11', name: 'Floor11', component: Floor11,meta:{breadNumber:1}},
         {path: '/floor12', name: 'Floor12', component: Floor12,meta:{breadNumber:2}},
         {path: '/floor13', name: 'Floor13', component: Floor13,meta:{breadNumber:3}},
+
+        {path: '/floor21', name: 'Floor21', component: Floor21,meta:{breadNumber:1}},
+        {path: '/floor22', name: 'Floor22', component: Floor22,meta:{breadNumber:2}},
+        {path: '/floor23', name: 'Floor23', component: Floor23,meta:{breadNumber:3}},
 
         {path: '/already', name: 'Already', component: Already},
 

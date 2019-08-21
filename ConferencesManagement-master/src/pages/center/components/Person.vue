@@ -3,7 +3,8 @@
       <el-card class="box-card" style="width: 80%;font-size: 18px;">
         <div slot="header" class="clearfix">
           <span>{{nickname}}</span>
-          <el-button style="float: right; padding: 3px 0;font-size:18px" type="text" @click="editor">编辑</el-button>
+          <el-button style="float: right; padding: 3px 0;font-size:18px" type="text" @click="editor" v-if="flag==0">编辑</el-button>
+          <el-button  @click="sure('')" v-if="flag==1" type="primary">确认</el-button>
         </div>
         <div>
           <el-form :label-position="labelPosition" label-width="120px" v-model="form" :inline="true">
@@ -28,7 +29,6 @@
             </el-form-item>
           </el-form>
         </div>
-        <el-button  @click="sure('')" v-if="flag==1">确认</el-button>
       </el-card>
     </div>
 </template>
