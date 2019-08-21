@@ -154,7 +154,6 @@
                             delete tmp.children
                         }
                         structs_datas.push(tmp)
-                        // console.log(tmp)
                         // return structs_datas;
                     }
                 }
