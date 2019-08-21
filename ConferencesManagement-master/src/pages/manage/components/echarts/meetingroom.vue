@@ -1,15 +1,13 @@
 <template>
   <div style="display: flex" width="1000px">
-    <!--<router-view></router-view>-->
-    <!--<Bread-Crumb></Bread-Crumb>-->
 
-    <div id="main" style="width: 700px;height:600px;background-color: rgba(211,220,230,0.19)">
+    <div id="main" style="width: 650px;height:600px;background-color: rgba(211,220,230,0.19)">
     </div>
 
 
-    <div style="width: 480px">
+    <div style="width: 470px" >
       <div class="table">
-        <div class="search-Box" style="margin-bottom: 20px">
+        <div class="search-Box" style="margin: 20px 0px 20px 0px">
           <el-row>
             <el-col :span="20">
               <el-date-picker
@@ -21,7 +19,7 @@
               </el-date-picker>
             </el-col>
             <el-col :span="4">
-              <el-button type="primary" @click="search">搜索</el-button>
+              <el-button type="primary" @click="search">查找空闲会议室</el-button>
             </el-col>
           </el-row>
         </div>
@@ -73,22 +71,18 @@
             },
             search() {
                 var $this = this
-                // console.log(this.time.value)
                 var timeinfo = {
                     time: $this.time
                 }
-                // var time = $this.time
-                // alert(time)
+
                 $.ajax({
                     type: 'post',
                     async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
                     url: 'http://localhost:9001/room/queryFreeRoom',    //请求发送到TestServlet处
                     data: JSON.stringify(timeinfo),
-                    // data: JSON.stringify({time:["2019-09-03T16:00:00.000Z", "2019-09-03T17:00:00.000Z"]}),
                     dataType: 'json',
                     contentType: 'application/json',        //返回数据形式为json
                     success: function (result) {
-                        // alert(JSON.stringify(result))
                         $this.tables = result.data
                     },
                     error: function (errorMsg) {
@@ -117,13 +111,10 @@
                 }
                 var info2 = {}
                 myChart.showLoading()
-                // setTimeout(drawLine,2000);
                 $.ajax({
                     type: 'get',
                     async: false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
                     url: 'http://localhost:9001/building/getChildren',    //请求发送到TestServlet处
-                    // url: '../../src/assets/building.json',
-                    // url:'src/assets/building.json',
                     data: {},
                     dataType: 'json',        //返回数据形式为json
                     success: function (result) {
@@ -152,7 +143,6 @@
                         }
                         var tmp = {
                             name: children[prop].name,
-                            // manage: children[prop].manage,
                             children: [],
                             asset_num: children[prop].asset_num,
                             id: children[prop].id,
@@ -163,7 +153,6 @@
                             delete tmp.children
                         }
                         structs_datas.push(tmp)
-                        // console.log(tmp)
                         // return structs_datas;
                     }
                 }
