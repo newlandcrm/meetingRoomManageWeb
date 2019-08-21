@@ -9,7 +9,7 @@
                     </el-form-item>
                     <el-form-item label="工号" prop="username">
                         <el-input v-model="form.username"></el-input>
-                    </el-form-item>                   
+                    </el-form-item>
                     <el-form-item label="手机号码" prop="mobile">
                         <el-input v-model="form.mobile"></el-input>
                     </el-form-item>
@@ -140,7 +140,7 @@ export default {
         //         {validator:checkDepartment, trigger:'change'}
         //     ]
         }
-        
+
       };
     },
     methods: {
@@ -173,10 +173,13 @@ export default {
             axios.post('http://localhost:9001/user/register',myData)
               .then(res => {
                 if(res.data.code === 20000){
-                  this.$message({
-                    message:'注册成功，赶快去登录吧',
-                    type:'success'
-                  })
+                    this.$message({
+                        message:'注册成功!',
+                        type:'success'
+                    })
+                    this.$router.push({
+                        path: '/log'
+                    })
                 }
                 else if(res.data.message === '该用户已存在!'){
                   this.$message({
@@ -226,7 +229,7 @@ export default {
             right 0
             top 0
             bottom 0
-            margin auto 
+            margin auto
             padding 50px
             background-color rgba(255,255,255,.7)
             border-radius 4px

@@ -10,7 +10,7 @@
           <el-input v-model="formLabelAlign.username"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="formLabelAlign.password"></el-input>
+          <el-input type="password" v-model="formLabelAlign.password" show-password></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="login('formLabelAlign')">登录</el-button>
@@ -48,8 +48,7 @@
               this.$store.commit('changeUserId', res.data.data.userid)
               this.$store.commit('changeToken', res.data.data.token)
               this.$store.commit('changeNickName', res.data.data.nickname)
-              // this.$store.commit('changeShowBtn','false')
-              this.$router.push('/')
+                this.$router.push('/')
             } else {
               this.$message({
                 message: '密码错误',
