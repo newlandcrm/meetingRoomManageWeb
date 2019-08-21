@@ -80,7 +80,6 @@
                     async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
                     url: 'http://localhost:9001/room/queryFreeRoom',    //请求发送到TestServlet处
                     data: JSON.stringify(timeinfo),
-                    // data: JSON.stringify({time:["2019-09-03T16:00:00.000Z", "2019-09-03T17:00:00.000Z"]}),
                     dataType: 'json',
                     contentType: 'application/json',        //返回数据形式为json
                     success: function (result) {
