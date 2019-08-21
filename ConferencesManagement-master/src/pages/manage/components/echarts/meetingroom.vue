@@ -143,7 +143,6 @@
                         }
                         var tmp = {
                             name: children[prop].name,
-                            // manage: children[prop].manage,
                             children: [],
                             asset_num: children[prop].asset_num,
                             id: children[prop].id,
