@@ -5,9 +5,9 @@
     </div>
 
 
-    <div style="width: 480px">
+    <div style="width: 480px" >
       <div class="table">
-        <div class="search-Box" style="margin-bottom: 20px">
+        <div class="search-Box" style="margin: 20px 0px 20px 0px">
           <el-row>
             <el-col :span="20">
               <el-date-picker
@@ -19,7 +19,7 @@
               </el-date-picker>
             </el-col>
             <el-col :span="4">
-              <el-button type="primary" @click="search">搜索</el-button>
+              <el-button type="primary" @click="search">查找空闲会议室</el-button>
             </el-col>
           </el-row>
         </div>
