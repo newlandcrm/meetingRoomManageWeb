@@ -7,6 +7,7 @@
       <div>
         <el-table
           :data="roomReserve"
+          v-loading="loading"
           style="width: 100%"
           :default-sort="{prop: 'date', order: 'descending'}"
         >
@@ -120,7 +121,8 @@
                 dynamicTags: [],
                 inputVisible: false,
                 inputValue: '',
-                reserveid:''
+                reserveid:'',
+                loading:true
             };
         },
         methods: {
@@ -133,6 +135,7 @@
                 axios.post('http://localhost:9001/roomReserve/search', params)
                     .then((res) => {
                         if (res.data.code === 20000) {
+                            this.loading = false
                             // this.roomReserve = res.data.data
                             for (var i=0;i<res.data.data.length;i++){
                                 if(timestamp<res.data.data[i].startdate){
@@ -178,7 +181,7 @@
             },
             daohang(index, row) {
                 this.$router.push({
-                    path: '/floor21',
+                    name: '园区',
                     params: {roomId: row.room.id},
                 })
             },

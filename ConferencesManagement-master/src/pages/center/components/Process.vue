@@ -7,6 +7,7 @@
         <div>
       <el-table
         :data="roomReserve"
+        v-loading="loading"
         style="width: 100%"
         :default-sort = "{prop: 'date', order: 'descending'}"
       >
@@ -72,7 +73,8 @@ export default {
     data() {
       return {
         roomReserve: [],
-          today:''
+          today:'',
+          loading:true
       };
     },
   methods:{
@@ -85,6 +87,7 @@ export default {
             axios.post('http://localhost:9001/roomReserve/search', params)
                 .then((res) => {
                     if (res.data.code === 20000) {
+                        this.loading = false
                         this.roomReserve = res.data.data
                     } else {
                         this.$message({

@@ -8,8 +8,10 @@
          @mousedown="down" @touchstart="down"
          @mousemove="move" @touchmove="move"
          @mouseup="end" @touchend="end"
+         v-if="show"
     >
       <p style="margin: 6px;color: #005BAC;font-size: 17px">代办事项</p>
+      <p v-if="flag" style="font-size: 18px;text-align: center;line-height: 40px">暂无代办事项</p>
       <ul id="daiban">
         <li v-for="item in roomReserve" class="el-icon-message-solid" style="margin: 3px" @click="goto('item')">
           {{ item.starttime }}——{{item.name}}
@@ -33,36 +35,46 @@
         },
         data() {
             return {
-                roomReserve: []
+                roomReserve: [],
+                flag: true,
+                show: false
             }
         },
         methods: {
             getRoomReserve() {
-                var timestamp = new Date().getTime()
-                let params = {
-                    // userid:this.$store.state.userid
-                    userid: '1160555929993875456'
-                }
-                axios.post('http://localhost:9001/roomReserve/search', params)
-                    .then((res) => {
-                        if (res.data.code === 20000) {
-                            for (var i = 0; i < res.data.data.length; i++) {
-                                if (timestamp < res.data.data[i].startdate) {
-                                    var startdate = this.timestampToTime(res.data.data[i].startdate)
-                                    this.roomReserve.push({starttime: startdate, name: res.data.data[i].room.name})
-                                } else {
-                                    return false
+                if (this.$store.state.userid) {
+                    this.show = true
+                    var timestamp = new Date().getTime()
+                    let params = {
+                        userid: this.$store.state.userid
+                    }
+                    axios.post('http://localhost:9001/roomReserve/search', params)
+                        .then((res) => {
+                            if (res.data.code === 20000) {
+                                if (res.data.data) {
+                                    this.flag = false
+                                    for (var i = 0; i < res.data.data.length; i++) {
+                                        if (timestamp < res.data.data[i].startdate) {
+                                            var startdate = this.timestampToTime(res.data.data[i].startdate)
+                                            this.roomReserve.push({
+                                                starttime: startdate,
+                                                name: res.data.data[i].room.name
+                                            })
+                                        } else {
+                                            return false
+                                        }
+                                    }
                                 }
+                            } else {
+                                this.$message({
+                                    message: '网络连接失败！',
+                                    type: 'danger'
+                                })
                             }
-                        } else {
-                            this.$message({
-                                message: '网络连接失败！',
-                                type: 'danger'
-                            })
-                        }
-                    }).catch((error) => {
-                    console.log(error)
-                })
+                        }).catch((error) => {
+                        console.log(error)
+                    })
+                }
             },
             goto(item) {
                 this.$router.push({
