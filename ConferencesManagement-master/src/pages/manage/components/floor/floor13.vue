@@ -31,7 +31,7 @@
         methods: {
             start() {
                 if (this.$route.params.roomId) {
-                    if (this.$route.params.roomId === '111') {
+                    if (this.$route.params.roomId === '1164730606500843520') {
                         this.flag = true
                         setTimeout(() => {
                             this.$alert('本次导航已结束，功能未完善请谅解', {
@@ -51,13 +51,13 @@
             goPage1() {
                 this.$router.push({
                     name: 'Order',
-                    params: {roomId: '111'},
+                    params: {roomId: '1164730606500843520'},
                 })
             },
             goPage() {
                 this.$router.push({
                     name: 'Order',
-                    params: {roomId: '1159352944550875136'},
+                    params: {roomId: '1164730709752025088'},
                 })
             },
         },
