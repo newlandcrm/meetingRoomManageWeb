@@ -7,9 +7,9 @@
 
     <div style="width: 470px" >
       <div class="table">
-        <div class="search-Box" style="margin: 20px 0px 20px 0px">
-          <el-row>
-            <el-col :span="20">
+        <div class="search-Box" style="margin: 20px 0px 20px 0px" >
+          <el-row >
+            <el-col :span="20" >
               <el-date-picker
                 v-model="time"
                 type="datetimerange"
@@ -23,7 +23,7 @@
             </el-col>
           </el-row>
         </div>
-        <el-table :header-cell-style="{
+        <el-table v-loading="loading" :header-cell-style="{
                       'background-color': '#fcffba',
                       'color': '#4b84bc',
                       'font-size': '16px',
@@ -31,6 +31,9 @@
                   }" :data="tables" border style="width: 100%">
           <el-table-column prop="name" label="会议室名字"></el-table-column>
           <el-table-column prop="capacity" label="容量"></el-table-column>
+          <el-table-column  label="楼层">
+              <template slot-scope="scope">{{ scope.row.floor.building.name+scope.row.floor.describes }}</template>
+          </el-table-column>
           <el-table-column prop="addr" label="地址"></el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
@@ -58,7 +61,8 @@
         data() {
             return {
                 tables: [],
-                time: []
+                time: [],
+                loading:false
             }
         },
         methods: {
@@ -74,7 +78,7 @@
                 var timeinfo = {
                     time: $this.time
                 }
-
+                this.loading=true
                 $.ajax({
                     type: 'post',
                     async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -83,9 +87,11 @@
                     dataType: 'json',
                     contentType: 'application/json',        //返回数据形式为json
                     success: function (result) {
+                        $this.loading=false
                         $this.tables = result.data
                     },
                     error: function (errorMsg) {
+                        $this.loading=false
                         //请求失败时执行该函数
                         alert('搜索失败!')
                     }
