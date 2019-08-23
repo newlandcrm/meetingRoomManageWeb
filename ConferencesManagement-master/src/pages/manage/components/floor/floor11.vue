@@ -50,7 +50,7 @@
                 window.onresize = function () {
                     clearTimeout(timeout);
                     timeout = setTimeout(function () {
-                        window.location.reload();
+                        // window.location.reload();
                     }, 100);//页面大小变化，重新加载页面以刷新MAP
                 }
                 var map = this.$refs.Map1;
