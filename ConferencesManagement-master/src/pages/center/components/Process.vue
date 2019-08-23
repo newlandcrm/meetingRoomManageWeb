@@ -99,6 +99,7 @@ export default {
                 console.log(error)
             })
         }else{
+            this.loading = false
             this.$confirm('请先登录', '提示', {
                 confirmButtonText: '直接登录',
                 cancelButtonText: '取消',

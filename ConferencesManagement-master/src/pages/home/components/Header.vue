@@ -34,9 +34,10 @@
       <span>|</span>
       <router-link tag="span" to="/sign">注册</router-link>
     </div>
-    <div v-if="flag==true" class="header-login" @click="out">
+    <div v-if="flag==true" class="header-login">
       <p style="color:#005BAC;display: inline-block;">{{name}} </p>
-      <router-link tag="span" to="/log"> `退登</router-link>
+      <p style="display: inline-block;"  @click="out">| 退登 </p>
+<!--      <router-link tag="span" to="/log"> `退登 </router-link>-->
     </div>
   </div>
 </template>
@@ -94,6 +95,9 @@
         }
       },
         out(){
+            this.$router.push({
+                path: '/log',
+            })
             this.$store.commit('changeUserId', '')
         },
 

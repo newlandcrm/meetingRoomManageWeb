@@ -150,6 +150,8 @@
                     }).catch((error) => {
                     console.log(error)
                 })
+                }else{
+                    this.loading = false
                 }
             },
             getRelaPerson(){
