@@ -94,11 +94,9 @@
         }
       },
         out(){
-            this.$store.state={}
+            this.$store.commit('changeUserId', '')
         },
-        // clickcategory(index){ // 这里我们传入一个当前值
-        //     this.hoverIndex = index
-        // }
+
     }
   }
 </script>

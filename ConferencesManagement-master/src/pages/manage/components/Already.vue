@@ -136,12 +136,9 @@
                     .then((res) => {
                         if (res.data.code === 20000) {
                             this.loading = false
-                            // this.roomReserve = res.data.data
                             for (var i=0;i<res.data.data.length;i++){
                                 if(timestamp<res.data.data[i].startdate){
-                                    this.roomReserve = res.data.data
-                                }else{
-                                    return false
+                                    this.roomReserve.push(res.data.data[i])
                                 }
                             }
                         } else {
